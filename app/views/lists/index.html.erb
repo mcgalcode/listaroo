@@ -1,0 +1,18 @@
+<h1>All lists</h1>
+<ul>
+  <% @lists.each do |l| %>
+    <li>
+      <p>
+        <%= l.title %>
+      </p>
+      <ul>
+        <% l.list_items.each do |i| %>
+          <li>
+            <p>
+              <%= l.content %>
+            </p>
+          </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
