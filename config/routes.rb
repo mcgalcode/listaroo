@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
+  namespace :api do
     resources :lists
     resources :list_items
   end
