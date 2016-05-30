@@ -5,5 +5,4 @@ class Api::ListsController < ApplicationController
     render json: @lists
   end
 
-
 end
