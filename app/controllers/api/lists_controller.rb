@@ -5,4 +5,9 @@ class Api::ListsController < ApplicationController
     render json: @lists
   end
 
+  def destroy
+    @list = List.find(params[:id])
+    @list.delete
+    render nothing: true
+  end
 end

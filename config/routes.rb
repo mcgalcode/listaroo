@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  match '*path', via: [:options], :controller => 'application', :action => 'handle_options_request', :constraints => {:method => 'OPTIONS'}
+
   namespace :api, defaults: {format: 'json'} do
     resources :lists
     resources :list_items
