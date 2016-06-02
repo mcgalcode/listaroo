@@ -6,7 +6,7 @@ class Api::ListItemsController < ApplicationController
   def destroy
     @listitem = ListItem.find(params[:id])
     @listitem.delete
-    render nothing: true
+    render json: @listitem
   end
 
 
@@ -15,9 +15,8 @@ class Api::ListItemsController < ApplicationController
   # parent_list_id: the id of the list the list_item will belong to
 
   def create
-    @listitem = ListItem.new
-    @parentlist = List.find(params[:parent_list_id])
-    @parentList.list_items.build(content: params[:content])
+    @listitem = ListItem.create(content: params[:list_item][:content], list_id: params[:list_item][:list_id])
+    render json: @listitem
   end
 
   # To update a list item, send a PUT HTTP request to /api/list_items/:id
@@ -26,6 +25,11 @@ class Api::ListItemsController < ApplicationController
   def update
     @listitem = ListItem.find(params[:id])
     @listitem.update(content: params[:content])
+    render json: @listitem
+  end
+
+  def get_secure_params
+    params.require(:list_item).permit(:content, :list_id)
   end
 
 end
