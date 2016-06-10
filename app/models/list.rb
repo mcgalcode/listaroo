@@ -2,9 +2,9 @@ class List < ActiveRecord::Base
   has_many :list_items
 
   def as_json(options={})
-    super(:only => [:title],
+    super(:only => [:title, :id],
           :include => {
-            :list_items => { :only => [:content] }
+            :list_items => { :only => [:content, :id] }
             }
     )
   end
