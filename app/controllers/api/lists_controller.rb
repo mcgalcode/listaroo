@@ -1,7 +1,7 @@
 class Api::ListsController < ApplicationController
 
   def index
-    @lists = List.all
+    @lists = List.all.select { |list| list.parent_list.nil? }
     render json: @lists
   end
 

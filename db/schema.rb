@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529170702) do
+ActiveRecord::Schema.define(version: 20160613024233) do
 
   create_table "list_items", force: :cascade do |t|
     t.string   "content",    null: false
@@ -20,11 +20,39 @@ ActiveRecord::Schema.define(version: 20160529170702) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "list_relationships", force: :cascade do |t|
+    t.integer "parent_list_id"
+    t.integer "child_list_id"
+  end
+
   create_table "lists", force: :cascade do |t|
     t.string   "title",                  null: false
-    t.integer  "user_id",    default: 0
+    t.integer  "team_id",    default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
