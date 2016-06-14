@@ -1,8 +1,8 @@
 class CreateUserTeamJoinTable < ActiveRecord::Migration
   def change
-    create_table :teams_users, id: false do |t|
+    create_table :team_user_relationships, id: false do |t|
       t.integer :team_id
-      t.integer :user_id
+      t.integer :invited_user_id
     end
   end
 end

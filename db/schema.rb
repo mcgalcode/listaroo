@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614014212) do
+ActiveRecord::Schema.define(version: 20160614052739) do
 
   create_table "list_relationships", force: :cascade do |t|
     t.integer "parent_list_id"
@@ -25,16 +25,17 @@ ActiveRecord::Schema.define(version: 20160614014212) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "team_user_relationships", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "invited_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "teams_users", id: false, force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "user_id"
+    t.integer  "creator_id"
   end
 
   create_table "users", force: :cascade do |t|
