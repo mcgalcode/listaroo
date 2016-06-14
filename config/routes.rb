@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     resources :lists
     resources :list_items
+
+    post "/signup" => 'users#create'
+    delete ":id/logout" => 'sessions#destroy'
+    post "/login" => 'sessions#create'
   end
 
   get '/' => 'lists#index'

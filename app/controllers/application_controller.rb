@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, autharoo-token, useridaroo'
     headers['Access-Control-Max-Age'] = "1728000"
   end
 
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if request.method == :options
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, autharoo-token, useridaroo'
       headers['Access-Control-Request-Method'] = '*'
       headers['Access-Control-Request-Headers'] = '*'
       headers['Access-Control-Max-Age'] = '1728000'

@@ -1,5 +1,7 @@
 class Api::ListsController < ApplicationController
 
+  before_action :validate_user
+
   def index
     @lists = List.all.select { |list| list.parent_list.nil? }
     render json: @lists
@@ -31,5 +33,19 @@ class Api::ListsController < ApplicationController
     @list = List.find(params[:id])
     render json: @list
   end
+
+  private
+    def validate_user
+      @userId = request.headers["useridaroo"]
+      @userAuthToken = request.headers["autharoo-token"]
+      if @userId && @userAuthToken
+        if @user = User.find(@userId)
+          if @user.api_token == @userAuthToken
+            return
+          end
+        end
+      end
+      render nothing: true
+    end
 
 end
