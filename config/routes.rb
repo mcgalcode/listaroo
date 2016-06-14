@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post "/teams/:id/invite" => 'teams#invite_user'
   end
 
-  get '/' => 'lists#index'
+  get '/' => 'static_pages#viewAll'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

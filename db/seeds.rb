@@ -6,31 +6,47 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-lists = List.create([ { title: "Forks" }, { title: "Hikes" }, { title: "Socks" }])
 
-list1 = List.find(1)
-list2 = List.find(2)
-list3 = List.find(3)
+clayton = User.create([ {username: "clayton", password: "@@pw@@", password_confirmation: "@@pw@@"}])
+max = User.create([ {username: "max", password: "@@pw@@", password_confirmation: "@@pw@@"}])
+malcolm = User.create([ {username: "malcolm", password: "@@pw@@", password_confirmation: "@@pw@@"}])
+derek = User.create([ {username: "derek", password: "@@pw@@", password_confirmation: "@@pw@@"}])
+kyle = User.create([ {username: "kyle", password: "@@pw@@", password_confirmation: "@@pw@@"}])
 
-list1.child_lists.create(title: "Oregon")
-list1.child_lists.create(title: "Duke Hazard")
-list1.child_lists.create(title: "Flip-flops")
-list1.child_lists.create(title: "Secondary ejaculation")
-list1.child_lists.create(title: "Fast")
+listarooDev = User.find_by(username: "max").created_teams.create(name: "Listaroo Devteam")
+hikePlan = User.find_by(username: "clayton").created_teams.create(name: "Hike planning team")
+forksTeam = User.find_by(username: "malcolm").created_teams.create(name: "Forks and Knives team")
 
-l1c1 = list1.child_lists.first
-l1c1.child_lists.create(title: "Child item 1")
-l1c1.child_lists.create(title: "Child item 2")
-l1c1.child_lists.create(title: "Child item 3")
+listarooDev.invited_users << [clayton, malcolm, derek, kyle]
+hikePlan.invited_users << [max, malcolm, derek, kyle]
+forksTeam.invited_users << [clayton, max, derek, kyle]
 
-list2.child_lists.create(title: "Lone Peak")
-list2.child_lists.create(title: "Alta via 1")
-list2.child_lists.create(title: "Malcolms butthole")
-list2.child_lists.create(title: "Storm Mountain")
-list2.child_lists.create(title: "The WURL itself")
+authItems = listarooDev.lists.create(title: "Auth items")
+token = authItems.child_lists.create(title: "token stuff")
+username = authItems.child_lists.create(title: "user name submission")
+password = authItems.child_lists.create(title: "password submission")
 
-list3.child_lists.create(title: "Gregarious")
-list3.child_lists.create(title: "Venetian planetoids")
-list3.child_lists.create(title: "A small mining rig")
-list3.child_lists.create(title: "Overflowing with joy")
-list3.child_lists.create(title: "Semen went flying everywhere")
+uiItems = listarooDev.lists.create(title: "UI Changes")
+uiItems.child_lists.create(title: "use bootstrap")
+uiItems.child_lists.create(title: "load both team/list components at once")
+uiItems.child_lists.create(title: "use bootstrap")
+
+wasatch = hikePlan.lists.create(title: "wasatch area")
+wasatch.child_lists.create(title: "broad forks twin peaks")
+wasatch.child_lists.create(title: "mt nebo")
+wasatch.child_lists.create(title: "lone peak")
+
+europe = hikePlan.lists.create(title: "european hikes")
+europe.child_lists.create(title: "alta via 1")
+europe.child_lists.create(title: "the haute route")
+europe.child_lists.create(title: "the road to gimmelwald")
+
+knives = forksTeam.lists.create(title: "knife types")
+knives.child_lists.create(title: "butchers knife")
+knives.child_lists.create(title: "butter knife")
+knives.child_lists.create(title: "steak knife")
+
+forks = forksTeam.lists.create(title: "fork types")
+forks.child_lists.create(title: "trident of poseidon")
+forks.child_lists.create(title: "salad fork")
+forks.child_lists.create(title: "small pitchfork")
