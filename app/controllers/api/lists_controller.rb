@@ -1,6 +1,6 @@
 class Api::ListsController < ApplicationController
 
-  before_action :validate_user
+  # before_action :validate_user
 
   def index
     @lists = List.where(team_id: params[:teamId]) { |list| list.parent_list.nil? }
