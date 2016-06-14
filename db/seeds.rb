@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-lists = List.create([ { title: "Faggots" }, { title: "Hikes" }, { title: "Poopymeatsocks" }])
+lists = List.create([ { title: "Forks" }, { title: "Hikes" }, { title: "Socks" }])
 
 list1 = List.find(1)
 list2 = List.find(2)
