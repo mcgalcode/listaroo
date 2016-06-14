@@ -7,13 +7,17 @@ class Api::ListsController < ApplicationController
 
   def destroy
     @list = List.find(params[:id])
-    @list.delete
+    @list.destroy
     render json: @list
   end
 
   def create
-    @list = List.new(title: params[:title])
-    @list.save
+    if params[:parentListId] != 0
+      @list = List.find(params[:parentListId]).child_lists.create(title: params[:title])
+    else
+      @list = List.new(title: params[:title])
+      @list.save
+    end
     render json: @list
   end
 

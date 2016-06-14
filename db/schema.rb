@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160613024233) do
 
-  create_table "list_items", force: :cascade do |t|
-    t.string   "content",    null: false
-    t.integer  "list_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "list_relationships", force: :cascade do |t|
     t.integer "parent_list_id"
     t.integer "child_list_id"

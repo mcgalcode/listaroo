@@ -6,10 +6,10 @@
         <%= l.title %>
       </p>
       <ul>
-        <% l.list_items.each do |i| %>
+        <% l.child_lists.each do |i| %>
           <li>
             <p>
-              <%= i.content %>
+              <%= i.title %>
             </p>
           </li>
           <% end %>
