@@ -26,6 +26,18 @@ class Api::TeamsController < ApplicationController
   end
 
   def destroy
+    @team = Team.find(params[:id])
+    @team.destroy
+    render nothing: true
+  end
+
+  def invite_user
+    @user = User.find_by(username: params[:username])
+    @team = Team.find(params[:id])
+
+    @team.invited_users << @user
+    @team.save
+    render json: @user.as_json(:only => [:username])
   end
 
 

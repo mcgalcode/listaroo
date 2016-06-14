@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post "/signup" => 'users#create'
     delete ":id/logout" => 'sessions#destroy'
     post "/login" => 'sessions#create'
+    post "/teams/:id/invite" => 'teams#invite_user'
   end
 
   get '/' => 'lists#index'
