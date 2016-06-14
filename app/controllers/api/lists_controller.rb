@@ -3,7 +3,7 @@ class Api::ListsController < ApplicationController
   before_action :validate_user
 
   def index
-    @lists = List.all.select { |list| list.parent_list.nil? }
+    @lists = List.where(team_id: params[:teamId]) { |list| list.parent_list.nil? }
     render json: @lists
   end
 
@@ -17,7 +17,7 @@ class Api::ListsController < ApplicationController
     if params[:parentListId] != 0
       @list = List.find(params[:parentListId]).child_lists.create(title: params[:title])
     else
-      @list = List.new(title: params[:title])
+      @list = List.new(title: params[:title], team_id: params[:teamId])
       @list.save
     end
     render json: @list

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     resources :lists
-    resources :list_items
+    resources :teams
 
     post "/signup" => 'users#create'
     delete ":id/logout" => 'sessions#destroy'
