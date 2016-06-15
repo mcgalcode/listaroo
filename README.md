@@ -17,11 +17,14 @@ Url: /api/lists.json?teamId=XXX (XXX is the id of the team whose list you want)
 
 ### Destroy
 
+```
 Method: DELETE
 Url: /api/lists/:list_id (where :list_id is the id of the list you want to delete)
+```
 
 ### Create
 
+```
 Method: POST
 Url: /api/lists
 Data:
@@ -30,25 +33,29 @@ Data:
     "teamId" : teamId,
     "parentListId" : parentListId    
   }
-
+```
 ### Update
 
+```
 Method: PUT
 Url: /api/lists/:list_id (where :list_id is the id of the list to update)
 Data:
   {
       'title': yourListTitle
   }
+```
 
 ### Show (get a particular list)
 
+```
 Method: GET
 Url: /api/lists/:list_id (where :list_id is the id of the desired list)
-
+```
 ## Sessions
 
 ### Create (login)*
 
+```
 Method: POST
 Url: /api/login
 Data:
@@ -56,7 +63,7 @@ Data:
     'username' : yourUserName,
     'password' : yourPassword
   }
-
+```
 Returns a user object with the following params:
 
 * id
@@ -68,8 +75,10 @@ Returns a user object with the following params:
 
 ### Destroy (logout)
 
+```
 Method: DELETE
 Url: /api/:user_id/logout (where :user_id is the id you are logging out from)
+```
 
 Returns nothing.
 
@@ -77,6 +86,7 @@ Returns nothing.
 
 ### Create (Sign up)
 
+```
 Method: POST
 Url: /api/signup
 Data:
@@ -88,7 +98,7 @@ Data:
     "last_name" : "blahblahblah",
     "email" : "blahblahblah"
   }
-
+```
 Returns a user object with the following properties:
 
 * id
@@ -111,23 +121,28 @@ Some of the following methods return a json rendering of a team object with the 
 
 ### Index
 
+```
 Method: POST
 Url: /api/teams?userId=XXX&type=YYY
   where:
       userId is the name of the user
       type: either "created" or "invited"
+```
 
 Returns either the teams the users have *created* or *invited* depending on the type parameter past in through the URL query string (team object in response has same structure described above)
 
 ### Show
 
+```
 Method: GET
 Url: /api/teams/:team_id (where :team_id is the id of the team you wish to retrieve)
+```
 
 Returns a team object.
 
 ### Create
 
+```
 Method: POST
 Url: /api/teams
 Data:
@@ -135,23 +150,28 @@ Data:
     'name' : yourNewTeamName,
     'creatorId' : the id of the user who created the team
   }
+```
 
 Returns a team object.
 
 ### Destroy
 
+```
 Method: DELETE
 Url: /api/teams/:team_id (where :team_id is the id of the team you want to delete)
+```
 
 Returns nothing.
 
 ### Invite User
 
+```
 Method: POST
 Url: /api/teams/:team_id/invite (where :team_id is the id of the team you are inviting the user to)
 data:
   {
     'username' : theUsernameOfTheInvitedUser
   }
+```
 
 Returns the users username if successfully added.
