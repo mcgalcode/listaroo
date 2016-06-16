@@ -1,4 +1,4 @@
-### Welcome to Listaroo
+# Welcome to Listaroo
 
 Listaroo may be interacted with through any of the following API's:
 
@@ -12,8 +12,10 @@ Each of the following endpoints returns either an array of list objects (for the
 
 ### Index (get all lists for a team)
 
+```
 Method: GET
 Url: /api/lists.json?teamId=XXX (XXX is the id of the team whose list you want)
+```
 
 ### Destroy
 
@@ -34,6 +36,8 @@ Data:
     "parentListId" : parentListId    
   }
 ```
+
+**NOTE:** If you want to add a top level list to a team (list without a parent), pass a parentListId of 0.
 ### Update
 
 ```
