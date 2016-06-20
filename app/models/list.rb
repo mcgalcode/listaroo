@@ -12,6 +12,8 @@ class List < ActiveRecord::Base
 
   before_destroy :destroy_child_lists
 
+  validates :title, presence: true
+
   def as_json(options={})
     super(:only => [:title, :id],
           :include => :child_lists

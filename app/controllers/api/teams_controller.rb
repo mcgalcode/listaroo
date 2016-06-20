@@ -21,8 +21,12 @@ class Api::TeamsController < ApplicationController
   def create
     creatorId = params[:creatorId]
     name = params[:name]
-    @team = Team.create(creator_id: creatorId, name: name)
-    render json: @team
+    @team = Team.new(creator_id: creatorId, name: name)
+    if @team.save
+      render json: @team
+    else
+      render json: { :errors => @team.errors.full_messages}, status: 401
+    end
   end
 
   def destroy
@@ -33,11 +37,18 @@ class Api::TeamsController < ApplicationController
 
   def invite_user
     @user = User.find_by(username: params[:username])
-    @team = Team.find(params[:id])
-
-    @team.invited_users << @user
-    @team.save
-    render json: @user.as_json(:only => [:username])
+    if !@user
+      render json: {:errors => ["No user found with that name"]}, status: 401
+    else
+      @team = Team.find(params[:id])
+      if @team.invited_users.include? @user
+        render json: {:errors => ["That user is already part of this team"]}, status: 401
+      else
+        @team.invited_users << @user
+        @team.save
+        render json: { user: {username: @user.username }}
+      end
+    end
   end
 
 

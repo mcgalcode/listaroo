@@ -15,12 +15,15 @@ class Api::ListsController < ApplicationController
 
   def create
     if params[:parentListId] != 0
-      @list = List.find(params[:parentListId]).child_lists.create(title: params[:title])
+      @list = List.find(params[:parentListId]).child_lists.build(title: params[:title])
     else
       @list = List.new(title: params[:title], team_id: params[:teamId])
-      @list.save
     end
-    render json: @list
+    if @list.save
+      render json: @list
+    else
+      render json: {:errors => @list.errors.full_messages}, status: 401
+    end
   end
 
   def update

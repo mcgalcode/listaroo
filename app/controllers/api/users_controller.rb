@@ -2,7 +2,7 @@ class Api::UsersController < ApplicationController
 
   def create
     password = params[:password]
-    password_confirm = params[:password_confirmation]
+    password_confirm = params[:passwordConf] || ""
     username = params[:username]
 
     @user = User.new(password: password, password_confirmation: password_confirm, username: username)
@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
       @user.update(api_token: generate_api_token)
       render json: @user
     else
-      render nothing: true
+      render json: {:errors => @user.errors.full_messages}, status: 401
     end
   end
 

@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  validates :username, presence: true
+  validates :username, uniqueness: true
+
   def as_json(options={})
     super(:only => [:id, :first_name, :last_name, :username, :email, :api_token] )
   end

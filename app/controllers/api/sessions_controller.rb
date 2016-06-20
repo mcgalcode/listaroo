@@ -3,12 +3,15 @@ class Api::SessionsController < ApplicationController
   def create
     username = params[:username]
     password = params[:password]
-    @user = User.find_by(username: username)
-    if @user.authenticate(password)
-      @user.update(api_token: generate_api_token)
-      render json: @user
+    if @user = User.find_by(username: username)
+      if @user.authenticate(password)
+        @user.update(api_token: generate_api_token)
+        render json: @user
+      else
+        render json: {:errors => "Incorrect username/password combination"}, status: 401
+      end
     else
-      render nothing: true
+      render json: {:errors => "No user found with that name"}, status: 400
     end
   end
 
