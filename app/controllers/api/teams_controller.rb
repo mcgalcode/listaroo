@@ -35,6 +35,12 @@ class Api::TeamsController < ApplicationController
     render nothing: true
   end
 
+  def update
+    @team = Team.find(params[:id])
+    @team.update(name: params[:name])
+    render @team
+  end
+
   def invite_user
     @user = User.find_by(username: params[:username])
     if !@user

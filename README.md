@@ -1,6 +1,11 @@
-# Welcome to Listaroo
+# Listaroo Header Documentation
 
-Listaroo may be interacted with through any of the following API's:
+To make API requests to Listaroo resources (teams and lists), you must supply two additional headers in all HTTP requests:
+
+```
+useridaroo: idOfLoggedInuser
+autharoo-token: apiTokenReturnedByLoginRequest
+```
 
 ## Lists
 
@@ -166,6 +171,19 @@ Url: /api/teams/:team_id (where :team_id is the id of the team you want to delet
 ```
 
 Returns nothing.
+
+### Update
+
+```
+Method: PUT
+Url: /api/teams/:team_id
+Data:
+  {
+    'name' : revisedTeamName
+  }
+```
+
+Returns updated team object
 
 ### Invite User
 
