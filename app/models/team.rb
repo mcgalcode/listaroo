@@ -8,7 +8,7 @@ class Team < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
   has_many :invited_users, through: :invited_user_relationships
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 
   def as_json(options={})
     super(:only => [:name, :id],
