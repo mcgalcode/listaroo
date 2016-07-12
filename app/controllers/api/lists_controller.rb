@@ -13,7 +13,10 @@ class Api::ListsController < ApplicationController
     render json: @list
   end
 
+
+
   def create
+    # If there is no parent list then assume that we should just assign the list to the current users team
     if params[:parentListId] != 0
       parentList = List.find(params[:parentListId])
       @list = List.new(title: params[:title])

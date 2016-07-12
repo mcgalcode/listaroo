@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def create
+    # If the user doesn't pass in a password confirmation, set it to be blank
     password = params[:password]
     password_confirm = params[:passwordConf] || ""
     username = params[:username]

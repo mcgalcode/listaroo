@@ -3,6 +3,8 @@ class Api::TeamsController < ApplicationController
   # before_action :validate_user
 
   def index
+    # IT's possible to get a users teams that they created and those that they were invited to
+    # by including a query string w/ the GET requests
     @user = User.find(params[:userId])
     createdTeams = @user.created_teams
     invitedTeams = @user.invited_to_teams
@@ -42,6 +44,7 @@ class Api::TeamsController < ApplicationController
   end
 
   def invite_user
+    # Invited users should be located with their username
     @user = User.find_by(username: params[:username])
     if !@user
       render json: {:errors => ["No user found with that name"]}, status: 401
